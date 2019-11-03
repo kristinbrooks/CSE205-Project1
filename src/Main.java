@@ -25,14 +25,14 @@ public class Main {
      *
      */
     public static void main(String[] args) {
-        String filesDir = args.length == 1 ? args[0] : ".";
-        new Main().run(filesDir);
+        String filesDirectory = args.length == 1 ? args[0] : ".";
+        new Main().run(filesDirectory);
     }
     /**
      *
      */
-    private void run(String filesDir) {
-        ArrayList<Integer> list = readFile(filesDir + "/p01-in.txt" );
+    private void run(String filesDirectory) {
+        ArrayList<Integer> list = readFile(filesDirectory + "/p01-in.txt");
 
         ArrayList<Integer> listRunsUpCount = findsRuns(list, RUNS_UP);
         ArrayList<Integer> listRunsDnCount = findsRuns(list, RUNS_DN);
@@ -42,7 +42,7 @@ public class Main {
         output("p01-runs.txt", listRunsCount);
     }
     /**
-     * reads the integers in the input file into an ArrayList and returns the ArrayList
+     * reads the integers in the 'p01-in.txt' into the ArrayList 'list' and returns list
      */
     private ArrayList<Integer> readFile(String inputFile) {
         ArrayList<Integer> list = new ArrayList<>();
