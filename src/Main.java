@@ -10,41 +10,48 @@
 //
 // AUTHOR: Kristin Brooks, krbrook7, krbrook7@asu.edu
 //*********************************************************************************************************************
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
 
 public class Main {
     // global variables
     private final int RUNS_UP = 37;
     private final int RUNS_DN = 73;
 
+
+    /**
+     *
+     */
     public static void main(String[] args) {
-        new Main().run();
+        String filesDir = args.length == 1 ? args[0] : ".";
+        new Main().run(filesDir);
     }
     /**
      *
      */
-    private void run() {
-        ArrayList<Integer> list = readFile("/Users/Ktown/workspace/CSE205-Project1/txt-files" +
-                "/input/p01-in.txt");
+    private void run(String filesDir) {
+        ArrayList<Integer> list = readFile(filesDir + "/p01-in.txt" );
 
         ArrayList<Integer> listRunsUpCount = findsRuns(list, RUNS_UP);
         ArrayList<Integer> listRunsDnCount = findsRuns(list, RUNS_DN);
 
         ArrayList<Integer> listRunsCount = merge(listRunsUpCount, listRunsDnCount);
 
-        output("/Users/Ktown/workspace/CSE205-Project1/txt-files/p01-runs.txt", listRunsCount);
+        output("p01-runs-correct.txt", listRunsCount);
     }
+
     /**
      * reads the integers in the input file into an ArrayList and returns the ArrayList
      */
     private ArrayList<Integer> readFile(String inputFile) {
         ArrayList<Integer> list = new ArrayList<>();
         try {
-            Scanner input = new Scanner(new File(inputFile));
+            File source = new File(inputFile);
+            Scanner input = new Scanner(source);
             while (input.hasNextInt()) {
                 list.add(input.nextInt());
             }
@@ -62,24 +69,25 @@ public class Main {
         ArrayList<Integer> listRunsCount = arrayListCreate(list.size(), 0);
         int i = 0;
         int k = 0;
-        while (i < list.size()-1) {
+        while (i < list.size() - 1) {
             if (direction == RUNS_UP && list.get(i) <= list.get(i + 1)) {
                 k++;
             } else if (direction == RUNS_DN && list.get(i) >= list.get(i + 1)) {
                 k++;
             } else {
                 if (k != 0) {
-                    listRunsCount.add(k,listRunsCount.get(k) + 1);
+                    listRunsCount.add(k, listRunsCount.get(k) + 1);
                     k = 0;
                 }
             }
         }
         if (k != 0) {
-            listRunsCount.add(k,listRunsCount.get(k) + 1);
+            listRunsCount.add(k, listRunsCount.get(k) + 1);
             k = 0;
         }
         return listRunsCount;
     }
+
     /**
      *
      */
@@ -90,21 +98,23 @@ public class Main {
         }
         return list;
     }
+
     /**
      *
      */
     private ArrayList<Integer> merge(ArrayList<Integer> listRunsUpCount, ArrayList<Integer> listRunsDnCount) {
         ArrayList<Integer> listRunsCount = arrayListCreate(listRunsUpCount.size(), 0);
-        for  (int index = 0; index < listRunsUpCount.size(); index++) {
+        for (int index = 0; index < listRunsUpCount.size(); index++) {
             listRunsCount.add(index, listRunsUpCount.get(index) + listRunsDnCount.get(index));
         }
         return listRunsCount;
     }
+
     /**
      *
      */
     private void output(String outputFileName, ArrayList<Integer> listRuns) {
-        try{
+        try {
             PrintWriter output = new PrintWriter(outputFileName);
             output.println("runs_total, " + runsSum(listRuns) + "\n");
             for (int k = 1; k < listRuns.size(); k++) {
@@ -116,6 +126,7 @@ public class Main {
             System.exit(-1);
         }
     }
+
     /**
      *
      */
