@@ -73,14 +73,14 @@ public class Main {
                 k++;
             } else {
                 if (k != 0) {
-                    listRunsCount.add(k, (listRunsCount.get(k) + 1));
+                    listRunsCount.set(k, listRunsCount.get(k) + 1);
                     k = 0;
                 }
             }
             i++;
         }
         if (k != 0) {
-            listRunsCount.add(k, (listRunsCount.get(k) + 1));
+            listRunsCount.set(k, listRunsCount.get(k) + 1);
             k = 0;
         }
         return listRunsCount;
@@ -100,13 +100,12 @@ public class Main {
      */
     private ArrayList<Integer> merge(ArrayList<Integer> listRunsUpCount, ArrayList<Integer> listRunsDnCount) {
         ArrayList<Integer> listRunsCount = arrayListCreate(listRunsUpCount.size(), 0);
-        for (int index = 0; index < listRunsUpCount.size() - 1; index++) { // does this need to be -1? or is it just because one of my arrays was shorter?
+        for (int index = 0; index < listRunsUpCount.size(); index++) {
             int e = listRunsUpCount.get(index) + listRunsDnCount.get(index);
             listRunsCount.set(index, e);
         }
         return listRunsCount;
     }
-
     /**
      *
      */
@@ -115,7 +114,7 @@ public class Main {
             PrintWriter output = new PrintWriter(outputFileName);
             output.println("runs_total, " + runsSum(listRuns));
             for (int k = 1; k < listRuns.size(); k++) {
-                output.println("runs-" + k + ", " + listRuns.get(k));
+                output.println("runs_" + k + ", " + listRuns.get(k));
             }
             output.close();
         } catch (FileNotFoundException exception) {
