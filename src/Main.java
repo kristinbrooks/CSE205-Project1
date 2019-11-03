@@ -21,8 +21,6 @@ public class Main {
     // global variables
     private final int RUNS_UP = 37;
     private final int RUNS_DN = 73;
-
-
     /**
      *
      */
@@ -41,9 +39,8 @@ public class Main {
 
         ArrayList<Integer> listRunsCount = merge(listRunsUpCount, listRunsDnCount);
 
-        output("p01-runs-correct.txt", listRunsCount);
+        output("p01-runs.txt", listRunsCount);
     }
-
     /**
      * reads the integers in the input file into an ArrayList and returns the ArrayList
      */
@@ -57,7 +54,7 @@ public class Main {
             }
             input.close();
         } catch (FileNotFoundException exception) {
-            System.out.println("Unfortunately your input file could not be found. The program will now terminate.");
+            System.out.println("Unfortunately your input file could not be found. The program will now stop running.");
             System.exit(-1);
         }
         return list;
@@ -76,18 +73,18 @@ public class Main {
                 k++;
             } else {
                 if (k != 0) {
-                    listRunsCount.add(k, listRunsCount.get(k) + 1);
+                    listRunsCount.add(k, (listRunsCount.get(k) + 1));
                     k = 0;
                 }
             }
+            i++;
         }
         if (k != 0) {
-            listRunsCount.add(k, listRunsCount.get(k) + 1);
+            listRunsCount.add(k, (listRunsCount.get(k) + 1));
             k = 0;
         }
         return listRunsCount;
     }
-
     /**
      *
      */
@@ -98,14 +95,14 @@ public class Main {
         }
         return list;
     }
-
     /**
      *
      */
     private ArrayList<Integer> merge(ArrayList<Integer> listRunsUpCount, ArrayList<Integer> listRunsDnCount) {
         ArrayList<Integer> listRunsCount = arrayListCreate(listRunsUpCount.size(), 0);
-        for (int index = 0; index < listRunsUpCount.size(); index++) {
-            listRunsCount.add(index, listRunsUpCount.get(index) + listRunsDnCount.get(index));
+        for (int index = 0; index < listRunsUpCount.size() - 1; index++) { // does this need to be -1? or is it just because one of my arrays was shorter?
+            int e = listRunsUpCount.get(index) + listRunsDnCount.get(index);
+            listRunsCount.set(index, e);
         }
         return listRunsCount;
     }
@@ -116,17 +113,16 @@ public class Main {
     private void output(String outputFileName, ArrayList<Integer> listRuns) {
         try {
             PrintWriter output = new PrintWriter(outputFileName);
-            output.println("runs_total, " + runsSum(listRuns) + "\n");
+            output.println("runs_total, " + runsSum(listRuns));
             for (int k = 1; k < listRuns.size(); k++) {
-                output.println("runs-" + k + ", " + listRuns.get(k) + "\n");
+                output.println("runs-" + k + ", " + listRuns.get(k));
             }
             output.close();
         } catch (FileNotFoundException exception) {
-            System.out.println("Unfortunately your output file could not be found. The program will now terminate.");
+            System.out.println("Unfortunately your output file could not be found. The program will now stop running.");
             System.exit(-1);
         }
     }
-
     /**
      *
      */
