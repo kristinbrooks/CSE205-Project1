@@ -54,7 +54,7 @@ public class Main {
             }
             input.close();
         } catch (FileNotFoundException exception) {
-            System.out.println("Unfortunately your input file could not be found. The program will now stop running.");
+            System.out.println("Unfortunately 'p01-in.txt' could not be opened. The program will now stop running.");
             System.exit(-1);
         }
         return list;
@@ -118,7 +118,7 @@ public class Main {
             }
             output.close();
         } catch (FileNotFoundException exception) {
-            System.out.println("Unfortunately your output file could not be found. The program will now stop running.");
+            System.out.println("Unfortunately 'p01-runs.txt' could not be found. The program will now stop running.");
             System.exit(-1);
         }
     }
