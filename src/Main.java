@@ -112,7 +112,7 @@ public class Main {
     private void output(String outputFileName, ArrayList<Integer> listRuns) {
         try {
             PrintWriter output = new PrintWriter(outputFileName);
-            output.println("runs_total, " + runsSum(listRuns));
+            output.println("runs_total, " + calculateRunTotal(listRuns));
             for (int k = 1; k < listRuns.size(); k++) {
                 output.println("runs_" + k + ", " + listRuns.get(k));
             }
@@ -125,7 +125,7 @@ public class Main {
     /**
      *
      */
-    private int runsSum(ArrayList<Integer> listRuns) {
+    private int calculateRunTotal(ArrayList<Integer> listRuns) {
         int sum = 0;
         for (Integer run : listRuns) {
             sum += run;
