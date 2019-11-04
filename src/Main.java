@@ -26,6 +26,7 @@ public class Main {
     // global variables
     private final int RUNS_UP = 37;
     private final int RUNS_DN = 73;
+
     /**
      * The 'main' method creates an instance of the 'Main' class and calls the 'run' method on it to run the program.
      */
@@ -35,6 +36,7 @@ public class Main {
         String filesDirectory = args.length == 1 ? args[0] : ".";
         new Main().run(filesDirectory);
     }
+
     /**
      * This method creates ArrayLists calls the other methods in the necessary order to run the program and ouput the
      * required txt file.
@@ -52,6 +54,7 @@ public class Main {
         // One of the parameters of the 'output' method was removed to be more efficient.
         output(listRunsCount);
     }
+
     /**
      * This method reads the integers in the 'p01-in.txt' into the ArrayList 'list' and returns 'list'. It will also
      * catch a 'FileNotFoundException' if one occurs and terminate the program.
@@ -71,6 +74,7 @@ public class Main {
         }
         return list;
     }
+
     /**
      * This methods finds runs going up or down in the ArrayList of the data from the text file. It uses k to keep
      * track of the length of the run. (The length = k + 1.) When it finds a run, an element at the index of
@@ -98,6 +102,7 @@ public class Main {
         }
         return listRunsCount;
     }
+
     /**
      * This method creates an ArrayList of the size provided filled with 0s and returns the ArrayList.
      */
@@ -108,6 +113,7 @@ public class Main {
         }
         return list;
     }
+
     /**
      * This method adds the elements at the same index from two separate ArrayLists and sets the new value into a
      * new ArrayList at the same index. Then it returns the new ArrayList.
@@ -119,6 +125,7 @@ public class Main {
         }
         return listRunsCount;
     }
+
     /**
      * This method outputs a txt file containing the total number of runs found and a list of the number of runs
      * found for each value of k.
@@ -138,6 +145,7 @@ public class Main {
             System.exit(-1);
         }
     }
+
     /**
      * This method calculates the total number of runs that were found in the data in the txt file by looping
      * through the ArrayList of the run counts and summing all its elements.
