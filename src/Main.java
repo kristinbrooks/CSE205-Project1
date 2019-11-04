@@ -22,7 +22,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-@SuppressWarnings("WeakerAccess")
 public class Main {
     // global variables
     private final int RUNS_UP = 37;
