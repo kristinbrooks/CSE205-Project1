@@ -41,7 +41,6 @@ public class Main {
      * This method creates ArrayLists calls the other methods in the necessary order to run the program and output the
      * required txt file.
      */
-    @SuppressWarnings("SpellCheckingInspection")
     private void run(String filesDirectory) {
         // The pseudocode was changed from two lines to one line to declare and fill the ArrayLists to
         // simplify the code.
