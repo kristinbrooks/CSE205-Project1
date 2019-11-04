@@ -2,7 +2,7 @@
 // CLASS: Main (Main.java)
 //
 // DESCRIPTION
-// This program reads a text file containing integers into an ArrayList. Then it loops through the Arraylist and finds
+// This program reads a text file containing integers into an ArrayList. Then it loops through the ArrayList and finds
 // monotonically increasing or decreasing sequences in the list. These sequences are called either a run up or a
 // run down. It counts the numbers of runs that occur at each possible length for the list (i.e. greater than 0,
 // less than the length of the list) and the total number of runs. The run counts are then output to a txt file.
@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings("WeakerAccess")
 public class Main {
     // global variables
     private final int RUNS_UP = 37;
@@ -38,13 +39,14 @@ public class Main {
     }
 
     /**
-     * This method creates ArrayLists calls the other methods in the necessary order to run the program and ouput the
+     * This method creates ArrayLists calls the other methods in the necessary order to run the program and output the
      * required txt file.
      */
+    @SuppressWarnings("SpellCheckingInspection")
     private void run(String filesDirectory) {
         // The pseudocode was changed from two lines to one line to declare and fill the ArrayLists to
         // simplify the code.
-        ArrayList<Integer> list = readFile(filesDirectory + "/testcases/p01-in.txt");
+        ArrayList<Integer> list = readFile(filesDirectory + "/p01-in.txt");
 
         ArrayList<Integer> listRunsUpCount = findsRuns(list, RUNS_UP);
         ArrayList<Integer> listRunsDnCount = findsRuns(list, RUNS_DN);
